@@ -1,6 +1,6 @@
 class User < ApplicationRecord
     has_secure_password
-    validates :email, uniqueness: true
+    validates :username, uniqueness: true
 
     def as_public_json
         self.as_json.except('password_digest')
