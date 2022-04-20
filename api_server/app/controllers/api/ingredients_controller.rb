@@ -27,7 +27,7 @@ class Api::IngredientsController < ApplicationController
   # PATCH/PUT /ingredients/1
   def update
     if @ingredient.update(ingredient_params)
-      render json: @ingredient
+      render json: @ingredient, status: :accepted
     else
       render json: @ingredient.errors, status: :unprocessable_entity
     end
@@ -35,7 +35,11 @@ class Api::IngredientsController < ApplicationController
 
   # DELETE /ingredients/1
   def destroy
-    @ingredient.destroy
+    if @ingredient.destroy
+      render json: {"success": "Deleted"}, status: :see_other
+    else
+      render json: {"status": :internal_server_error}, status: :internal_server_error
+    end
   end
 
   private
