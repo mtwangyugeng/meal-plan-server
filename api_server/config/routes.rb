@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
     post "/signup", to: "users#create"
     post "/login", to: "users#login"
     get "/user", to: "users#user"
-
+    resources :list_items
     resources :ingredients
   end
 end
